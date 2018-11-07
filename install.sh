@@ -8,7 +8,7 @@ sudo yum install ncurses-devel
 wget https://github.com/vim/vim/archive/master.zip
 unzip master.zip
 pushd vim-master/src/
-./configure && make -j64 && make install
+./configure && make -j64 && sudo make install
 popd
 rm vim-master master.zip -rf
 
@@ -22,13 +22,16 @@ curl -LSso autoload/pathogen.vim https://tpo.pe/pathogen.vim | true
 
 
 # Install go
-sudo yum -y install go
+#sudo yum -y install go
+wget https://dl.google.com/go/go1.11.2.linux-amd64.tar.gz
+tar xzf  go1.11.2.linux-amd64.tar.gz
+sudo cp -rf go /usr/local/
 
 mkdir -p  ~/software/go_workspace
 cat >> ~/.bashrc <<EOF
-export GOPATH=/search/odin/eva/software/go_workspace
-export GOROOT=/usr/lib/golang # 默认安装目录
-export PATH=$PATH:$GOPATH/bin
+export GOPATH=~/software/go_workspace
+export GOROOT=/usr/local/go # 默认安装目录
+export PATH=\$PATH:\$GOPATH/bin:\$GOROOT\bin
 EOF
 source ~/.bashrc
 

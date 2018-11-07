@@ -7,9 +7,9 @@ export http_proxy=http://10.130.14.129:8080
 sudo yum install ncurses-devel
 wget https://github.com/vim/vim/archive/master.zip
 unzip master.zip
-cd vim-master/src/
+pushd vim-master/src/
 ./configure && make -j64 && make install
-
+popd
 rm vim-master master.zip -rf
 
 sudo mv /usr/bin/vim /usr/bin/vim.bak
@@ -18,13 +18,15 @@ sudo ln /usr/local/bin/vim /usr/bin -s
 
 # Install pathogen  
 # ~/.vim/bundle是pathogen默认runtimepath，把所有的plugin放到该目录即可
-curl -LSso autoload/pathogen.vim https://tpo.pe/pathogen.vim
+curl -LSso autoload/pathogen.vim https://tpo.pe/pathogen.vim | true
 
 
+# Install go
+sudo yum -y install go
 
 mkdir -p  ~/software/go_workspace
 cat >> ~/.bashrc <<EOF
-export GOPATH=/search/odin/xxx/software/go_workspace
+export GOPATH=/search/odin/eva/software/go_workspace
 export GOROOT=/usr/lib/golang # 默认安装目录
 export PATH=$PATH:$GOPATH/bin
 EOF
@@ -33,7 +35,7 @@ source ~/.bashrc
 
 
 # 配置vim-go,会自动从网上下载相应包
-curl -fLo autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+curl -fLo autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim | true
 
 go get -u github.com/jstemmer/gotags
 go get -u github.com/mdempsky/gocode
@@ -43,6 +45,13 @@ mv ~/.vimrc ~/.vimrc.bak
 cp vimrc ~/.vimrc
 mv ~/.vim ~/.vim.bak
 cp -rf ../vim-setup ~/.vim
+
+# pushd ~/.vim/bundle
+# vim t
+# :Helptags
+
+# :GoInstallBinaries
+
 
 
 <<comm

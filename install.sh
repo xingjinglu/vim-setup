@@ -18,19 +18,8 @@ sudo ln /usr/local/bin/vim /usr/bin -s
 
 # Install pathogen  
 # ~/.vim/bundle是pathogen默认runtimepath，把所有的plugin放到该目录即可
-mkdir -p ~/.vim/autoload ~/.vim/bundle  && curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
+curl -LSso autoload/pathogen.vim https://tpo.pe/pathogen.vim
 
-
-# Install vim-plugin  
-git clone https://github.com/majutsushi/tagbar.git   ~/.vim/bundle/tagbar
-git clone https://github.com/scrooloose/nerdtree.git  ~/.vim/bundle/nerdtree
-git clone https://github.com/powerline/powerline.git ~/.vim/bundle/powerline
-git clone https://github.com/fatih/vim-go.git  ~/.vim/bundle/vim-go
-git clone https://github.com/tpope/vim-sensible.git ~/.vim/vim-sensible
-git clone https://github.com/Shougo/neocomplete.vim.git ~/.vim/neocomplete.vim
-git clone https://github.com/sjl/gundo.vim  ~/.vim/gundo.vim
-git clone https://github.com/Blackrush/vim-gocode.git  ~/.vim/vim-gocode
-git clone https://github.com/plasticboy/vim-markdown.git ~/.vim/vim-markdown
 
 
 mkdir -p  ~/software/go_workspace
@@ -44,13 +33,19 @@ source ~/.bashrc
 
 
 # 配置vim-go,会自动从网上下载相应包
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-git clone https://github.com/fatih/vim-go.git ~/.vim/plugged/vim-go
+curl -fLo autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 go get -u github.com/jstemmer/gotags
 go get -u github.com/mdempsky/gocode
 
+
 mv ~/.vimrc ~/.vimrc.bak
+cp vimrc ~/.vimrc
+mv ~/.vim ~/.vim.bak
+cp -rf ../vim-setup ~/.vim
+
+
+<<comm
 cat >  ~/.vimrc <<EOF
 execute pathogen#infect()
 syntax on
@@ -155,4 +150,5 @@ EOF
 pushd ~/.vim/bundle
 echo "vim t"
 echo ":GoInstallBinaries"
+comm
 

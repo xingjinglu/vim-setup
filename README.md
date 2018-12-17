@@ -1,7 +1,6 @@
 
 With pathogen tool.
 
-
 - Install  
 Make sure there are internets.
 ```bash
@@ -21,4 +20,6 @@ vim t
 ```
 
 
+
+### 解决tagbar对OpenCL或者其他扩展语言的支持问题   
 

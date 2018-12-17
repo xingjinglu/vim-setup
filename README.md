@@ -1,5 +1,5 @@
 
-## 利用 pathogen tool 配置vim.
+## 1. 利用 pathogen tool 配置vim.
 
 - Install  
 Make sure there are internets.
@@ -19,9 +19,8 @@ vim t
 :GoInstallBinaries
 ```
 
-
-### VIM setup tips   
-## 解决tagbar对OpenCL或者其他扩展语言的支持问题    
+## 2. VIM setup tips   
+### 2.1 解决tagbar对OpenCL或者其他扩展语言的支持问题    
 - Let ctags support OpenCL  
 ```bash 
 ctags -R --langmap=C++:+.cl,C:.c,Python:.py:Asm:+.S.s,Sh:.sh *

@@ -59,7 +59,8 @@ please seach the keywords "types.cpp = type_cpp" to get the right position.
 
 - Define a function to get ctags and cscope files  
 ```
-function gentags(){                                                             
+function gentags(){
+  rm cscope.out tags.lst tags 
   touch tags.lst                                                                
   find | grep "\.c$" >> tags.lst                                                
   find | grep "\.cpp$" >> tags.lst                                              

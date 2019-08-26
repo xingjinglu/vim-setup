@@ -1,8 +1,7 @@
 
 ## 1. 利用 pathogen tool 配置vim.
-
-- Install  pathogen
-Make sure you can access  internets.
+Make sure you can access  internets.   
+- Install  pathogen   
 ```bash
 # step 1.
 git clone --recursive https://github.com/xingjinglu/vim-setup.git
@@ -11,7 +10,6 @@ cd vim-setup
 # Step 2. Only config pathogen, nerdtree, tagbar in default.
 bash install.sh 
 ```
-
 
 - Install and config go.
 ```

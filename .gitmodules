@@ -34,3 +34,30 @@
 [submodule "pack/plugins/start/vim-go"]
 	path = pack/plugins/start/vim-go
 	url = https://github.com/fatih/vim-go.git
+[submodule "gundo.vim"]
+	path = gundo.vim
+	url = https://github.com/sjl/gundo.vim
+[submodule "vim-go"]
+	path = vim-go
+	url = https://github.com/fatih/vim-go.git
+[submodule "vim-markdown"]
+	path = vim-markdown
+	url = https://github.com/plasticboy/vim-markdown.git
+[submodule "vim-gocode"]
+	path = vim-gocode
+	url = https://github.com/Blackrush/vim-gocode.git
+[submodule "neocomplete.vim"]
+	path = neocomplete.vim
+	url = https://github.com/Shougo/neocomplete.vim.git
+[submodule "tagbar"]
+	path = tagbar
+	url = https://github.com/majutsushi/tagbar.git
+[submodule "nerdtree"]
+	path = nerdtree
+	url = https://github.com/scrooloose/nerdtree.git
+[submodule "powerline"]
+	path = powerline
+	url = https://github.com/powerline/powerline.git
+[submodule "vim-sensible"]
+	path = vim-sensible
+	url = https://github.com/tpope/vim-sensible.git

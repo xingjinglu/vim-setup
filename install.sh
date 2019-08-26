@@ -4,6 +4,10 @@ set -xe
 #export https_proxy=http://xx.xx.xx.xx:8080
 #export http_proxy=http://xx.xx.xx.xx:8080
 
+
+
+function install_basic()
+{
 # 1. Upgrade vim to 8.1.
 sudo yum install ncurses-devel
 wget https://github.com/vim/vim/archive/master.zip
@@ -42,8 +46,6 @@ set autoindent
 syntax on
 set hlsearch
 set showmatch
-
-
 
 let Tlist_Auto_Open = 0
 let Tlist_Auto_Update = 0
@@ -84,7 +86,10 @@ let TagbarOpenAutoClose = 0
 let tagbar_autoclose = 0
 let tagbar_autoopen = 1
 EOF
+}
 
+function  install_go()
+{
 
 # 4. Install go
 #sudo yum -y install go
@@ -95,8 +100,8 @@ sudo cp -rf go /usr/local/
 mkdir -p  ~/software/go_workspace
 cat >> ~/.bashrc <<EOF
 export GOPATH=~/software/go_workspace
-export GOROOT=/usr/local/go # 默认安装目录
-export PATH=\$PATH:\$GOPATH/bin:\$GOROOT\bin
+export GOROOT=/usr/local/go
+export PATH=\$PATH:\$GOPATH/bin:\$GOROOT/bin
 EOF
 source ~/.bashrc
 
@@ -167,4 +172,14 @@ pushd ~/.vim/bundle
 echo "vim t"
 echo ":GoInstallBinaries"
 comm
+}
 
+if [ $# == 0 ]
+then
+  echo $#
+  install_basic
+elif[ $0 == 0 ]
+  install_basic
+elif[ $0 == 1 ]
+  install_go
+fi

@@ -2,7 +2,7 @@
 ## 1. 利用 pathogen tool 配置vim.
 
 - Install  
-Make sure there are internets.
+Make sure you can access  internets.
 ```bash
 git clone https://github.com/xingjinglu/vim-setup.git
 
@@ -73,6 +73,8 @@ function gentags(){
   ctags -R --langmap=C++:+.cl,C:.c,Python:.py:Asm:+.S.s,Sh:.sh,Perl:+.pl *      
 }                              
 ```
+
+
 
 
 

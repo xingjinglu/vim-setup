@@ -1,9 +1,10 @@
 set -xe
 
-export https_proxy=http://10.130.14.129:8080
-export http_proxy=http://10.130.14.129:8080
+# Set up http proxy if needed.
+#export https_proxy=http://xx.xx.xx.xx:8080
+#export http_proxy=http://xx.xx.xx.xx:8080
 
-# Upgrade vim.
+# 1. Upgrade vim to 8.1.
 sudo yum install ncurses-devel
 wget https://github.com/vim/vim/archive/master.zip
 unzip master.zip
@@ -16,48 +17,11 @@ sudo mv /usr/bin/vim /usr/bin/vim.bak
 sudo ln /usr/local/bin/vim /usr/bin -s
 
 
-# Install pathogen  
+# 2. Install pathogen  
 # ~/.vim/bundle是pathogen默认runtimepath，把所有的plugin放到该目录即可
 curl -LSso autoload/pathogen.vim https://tpo.pe/pathogen.vim | true
 
-
-# Install go
-#sudo yum -y install go
-wget https://dl.google.com/go/go1.11.2.linux-amd64.tar.gz
-tar xzf  go1.11.2.linux-amd64.tar.gz
-sudo cp -rf go /usr/local/
-
-mkdir -p  ~/software/go_workspace
-cat >> ~/.bashrc <<EOF
-export GOPATH=~/software/go_workspace
-export GOROOT=/usr/local/go # 默认安装目录
-export PATH=\$PATH:\$GOPATH/bin:\$GOROOT\bin
-EOF
-source ~/.bashrc
-
-
-
-# 配置vim-go,会自动从网上下载相应包
-curl -fLo autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim | true
-
-go get -u github.com/jstemmer/gotags
-go get -u github.com/mdempsky/gocode
-
-
-mv ~/.vimrc ~/.vimrc.bak
-cp vimrc ~/.vimrc
-mv ~/.vim ~/.vim.bak
-cp -rf ../vim-setup ~/.vim
-
-# pushd ~/.vim/bundle
-# vim t
-# :Helptags
-
-# :GoInstallBinaries
-
-
-
-<<comm
+# 3. Setup .vimrc
 cat >  ~/.vimrc <<EOF
 execute pathogen#infect()
 syntax on
@@ -119,7 +83,48 @@ nnoremap <silent> <F7> :TagbarToggle<CR>
 let TagbarOpenAutoClose = 0
 let tagbar_autoclose = 0
 let tagbar_autoopen = 1
+EOF
 
+
+# 4. Install go
+#sudo yum -y install go
+wget https://dl.google.com/go/go1.11.2.linux-amd64.tar.gz
+tar xzf  go1.11.2.linux-amd64.tar.gz
+sudo cp -rf go /usr/local/
+
+mkdir -p  ~/software/go_workspace
+cat >> ~/.bashrc <<EOF
+export GOPATH=~/software/go_workspace
+export GOROOT=/usr/local/go # 默认安装目录
+export PATH=\$PATH:\$GOPATH/bin:\$GOROOT\bin
+EOF
+source ~/.bashrc
+
+
+# 4.1 配置vim-go,会自动从网上下载相应包
+curl -fLo autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim | true
+
+go get -u github.com/jstemmer/gotags
+go get -u github.com/mdempsky/gocode
+
+
+cp -rf ./autoload  ~/.vim/
+cp -rf ./bundle  ~/.vim/
+cp -rf ./pack ~/.vim/
+cp -rf ./plugin ~/.vim/
+cp -rf ./syntax ~/.vim/
+cp -rf ./view ~/.vim/
+cp -rf ./pyformat.py ~/.vim/
+cp -rf ./doc ~/.vim/
+
+# pushd ~/.vim/bundle
+# vim t
+# :Helptags
+
+# :GoInstallBinaries
+
+
+cat >>  ~/.vimrc <<EOF
 "golang                                                                                                                                             
 let g:tagbar_type_go = {                                                                                                                            
   \ 'ctagstype' : 'go',
@@ -153,7 +158,6 @@ EOF
 
 
 # Install other stuffs.
-
 
 # Generate help docs
 #vim t

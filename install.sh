@@ -89,13 +89,16 @@ autocmd BufNewFile,BufRead *.cl set filetype=opencl
 autocmd FileType opencl source /search/speech/luxingjing/.vim/plugin/opencl.vim
 
 "NerdTree
-nnoremap <silent> <F2> :NERDTree <CR>
+nnoremap <silent> <F3> :NERDTree <CR>
+let NERDTreeWinPos="right"
 
 "TagbarToggle
-nnoremap <silent> <F7> :TagbarToggle<CR>
+nnoremap <silent> <F2> :TagbarToggle<CR>
 let TagbarOpenAutoClose = 0
 let tagbar_autoclose = 0
 let tagbar_autoopen = 1
+let tagbar_left = 1
+let tagbar_width=32
 EOF
 }
 

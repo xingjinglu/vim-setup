@@ -17,7 +17,7 @@ bash install.sh
 # step 1
 bash install.sh 1
 
-step 2 Generate docs and config vim-go
+# step 2 Generate docs and config vim-go
 vim t
 :Helptags
 :GoInstallBinaries

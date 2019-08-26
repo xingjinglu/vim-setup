@@ -24,6 +24,16 @@ sudo ln /usr/local/bin/vim /usr/bin -s
 # 2. Install pathogen  
 # ~/.vim/bundle是pathogen默认runtimepath，把所有的plugin放到该目录即可
 curl -LSso autoload/pathogen.vim https://tpo.pe/pathogen.vim | true
+mv autoload/ gundo.vim/ neocomplete.vim/ powerline/ vim-gocode/ vim-markdown/ vim-sensible/ nerdtree/ tagbar/ vim-go ./bundle/
+
+cp -rf ./autoload  ~/.vim/
+cp -rf ./bundle  ~/.vim/
+cp -rf ./pack ~/.vim/
+cp -rf ./plugin ~/.vim/
+cp -rf ./syntax ~/.vim/
+cp -rf ./view ~/.vim/
+cp -rf ./pyformat.py ~/.vim/
+cp -rf ./doc ~/.vim/
 
 # 3. Setup .vimrc
 cat >  ~/.vimrc <<EOF
@@ -113,14 +123,6 @@ go get -u github.com/jstemmer/gotags
 go get -u github.com/mdempsky/gocode
 
 
-cp -rf ./autoload  ~/.vim/
-cp -rf ./bundle  ~/.vim/
-cp -rf ./pack ~/.vim/
-cp -rf ./plugin ~/.vim/
-cp -rf ./syntax ~/.vim/
-cp -rf ./view ~/.vim/
-cp -rf ./pyformat.py ~/.vim/
-cp -rf ./doc ~/.vim/
 
 # pushd ~/.vim/bundle
 # vim t

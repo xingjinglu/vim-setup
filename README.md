@@ -1,19 +1,25 @@
 
 ## 1. 利用 pathogen tool 配置vim.
 
-- Install  
+- Install  pathogen
 Make sure you can access  internets.
 ```bash
-git clone https://github.com/xingjinglu/vim-setup.git
-
+# step 1.
+git clone --recursive https://github.com/xingjinglu/vim-setup.git
 cd vim-setup
 
-# It will re-install go into /usr/local. Please comment them if you don't need.
+# Step 2. Only config pathogen, nerdtree, tagbar in default.
 bash install.sh 
+```
 
+
+- Install and config go.
 ```
-- Generate docs and config vim-go
-```
+# It will re-install go into /usr/local. Please comment them if you don't need.
+# step 1
+bash install.sh 1
+
+step 2 Generate docs and config vim-go
 vim t
 :Helptags
 :GoInstallBinaries
@@ -73,6 +79,11 @@ function gentags(){
   ctags -R --langmap=C++:+.cl,C:.c,Python:.py:Asm:+.S.s,Sh:.sh,Perl:+.pl *      
 }                              
 ```
+
+
+
+
+
 
 
 

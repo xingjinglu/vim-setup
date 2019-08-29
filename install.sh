@@ -21,11 +21,15 @@ sudo mv /usr/bin/vim /usr/bin/vim.bak
 sudo ln /usr/local/bin/vim /usr/bin -s
 
 
-# 2. Install pathogen  
+# 2. clang
+sudo yum install clang |true
+
+## 2.1 Install pathogen  
+
 # ~/.vim/bundle是pathogen默认runtimepath，把所有的plugin放到该目录即可
 curl -LSso autoload/pathogen.vim https://tpo.pe/pathogen.vim | true
 mkdir bundle |true
-mv  gundo.vim/ neocomplete.vim/ powerline/ vim-gocode/ vim-markdown/ vim-sensible/ nerdtree/ tagbar/ vim-go ./bundle/ |true
+mv ale/ gundo.vim/ neocomplete.vim/ powerline/ vim-gocode/ vim-markdown/ vim-sensible/ nerdtree/ tagbar/ vim-go ./bundle/ |true
 
 cp -rf ./autoload  ~/.vim/ |true
 cp -rf ./bundle  ~/.vim/  |true
@@ -99,6 +103,32 @@ let tagbar_autoclose = 0
 let tagbar_autoopen = 1
 let tagbar_left = 1
 let tagbar_width=32
+
+"ale
+let g:ale_linters_explicit = 0
+let g:ale_completion_enabled = 1
+
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+"let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
+"let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
+"let g:ale_c_cppcheck_options = ''
+"let g:ale_cpp_cppcheck_options = ''
+
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_enter = 0
+"let g:ale_lint_on_text_changed = 'never'
+
+nmap <silent> <C-j> <Plug>(ale_previous_wrap)
+nmap <silent> <C-k> <Plug>(ale_next_wrap)
+let g:ale_linters = {
+\   'c++': ['cppcheck', 'clang'],
+\   'cpp': ['cppcheck', 'clang'],
+\   'c': ['clang'],
+\   'python': ['pylint'],
+\}
 EOF
 }
 

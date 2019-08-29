@@ -61,3 +61,6 @@
 [submodule "vim-sensible"]
 	path = vim-sensible
 	url = https://github.com/tpope/vim-sensible.git
+[submodule "ale"]
+	path = ale
+	url = https://github.com/dense-analysis/ale.git

@@ -25,7 +25,7 @@ sudo ln /usr/local/bin/vim /usr/bin -s
 # ~/.vim/bundle是pathogen默认runtimepath，把所有的plugin放到该目录即可
 curl -LSso autoload/pathogen.vim https://tpo.pe/pathogen.vim | true
 mkdir bundle |true
-mv  gundo.vim/ neocomplete.vim/ powerline/ vim-gocode/ vim-markdown/ vim-sensible/ nerdtree/ tagbar/ vim-go ./bundle/ |true
+mv ale/ gundo.vim/ neocomplete.vim/ powerline/ vim-gocode/ vim-markdown/ vim-sensible/ nerdtree/ tagbar/ vim-go ./bundle/ |true
 
 cp -rf ./autoload  ~/.vim/ |true
 cp -rf ./bundle  ~/.vim/  |true

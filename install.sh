@@ -91,6 +91,8 @@ au FileType python set expandtab shiftwidth=4 tabstop=4
 " OpenCL format.
 autocmd BufNewFile,BufRead *.cl set filetype=opencl
 autocmd FileType opencl source /search/speech/luxingjing/.vim/plugin/opencl.vim
+autocmd BufNewFile,BufRead *.cc set filetype=cpp
+autocmd BufNewFile,BufRead *.cpp set filetype=cpp
 
 "NerdTree
 nnoremap <silent> <F3> :NERDTree <CR>
@@ -105,28 +107,39 @@ let tagbar_left = 1
 let tagbar_width=32
 
 "ale
-let g:ale_linters_explicit = 0
 let g:ale_completion_enabled = 1
-
+let g:ale_linters_explicit = 0
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-"let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
-"let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
-"let g:ale_c_cppcheck_options = ''
-"let g:ale_cpp_cppcheck_options = ''
+
+"gcc
+let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
+let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++11'
+let g:ale_c_cppcheck_options = ''
+let g:ale_cpp_cppcheck_options = ''
+
+"clang
+let g:ale_cpp_clang_executable = 'clang++'
+let g:ale_cpp_clang_options = '-std=c++11 -Wall'
+let g:ale_cpp_cppcheck_executable = 'cppcheck'
+let g:ale_cpp_cppcheck_options = ''
+
+"nvcc
+let g:ale_cuda_nvcc_options = '-std=c++11 -ccbin g++   -m64    -O3 -std=c++11  -lcublas -gencode arch=compute_70,code=sm_70 -gencode arch=compute_70,code=compute_70'
 
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_insert_leave = 0
 let g:ale_lint_on_enter = 0
-"let g:ale_lint_on_text_changed = 'never'
 
 nmap <silent> <C-j> <Plug>(ale_previous_wrap)
 nmap <silent> <C-k> <Plug>(ale_next_wrap)
 let g:ale_linters = {
 \   'c++': ['cppcheck', 'clang'],
 \   'cpp': ['cppcheck', 'clang'],
+\   'cc': ['cppcheck', 'clang'],
 \   'c': ['clang'],
+\   'cuda': ['nvcc'],
 \   'python': ['pylint'],
 \}
 EOF

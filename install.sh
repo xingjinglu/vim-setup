@@ -1,5 +1,7 @@
 set -xe
 
+echo "bash install.sh"
+echo "not with sudo"
 # Set up http proxy if needed.
 #export https_proxy=http://xx.xx.xx.xx:8080
 #export http_proxy=http://xx.xx.xx.xx:8080
@@ -227,8 +229,8 @@ if [ $# == 0 ]
 then
   echo $#
   install_basic
-elif[ $0 == 0 ]
+elif[ $1 == 0 ]
   install_basic
-elif[ $0 == 1 ]
+elif[ $1 == 1 ]
   install_go
 fi

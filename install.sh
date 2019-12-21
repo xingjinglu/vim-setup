@@ -11,6 +11,10 @@ echo "not with sudo"
 function install_basic()
 {
 # 1. Upgrade vim to 8.1.
+# Ubuntu
+#sudo apt-get install libncurses-dev
+
+# CentOS
 sudo yum install ncurses-devel
 wget https://github.com/vim/vim/archive/master.zip
 unzip master.zip

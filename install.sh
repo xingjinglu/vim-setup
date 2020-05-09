@@ -38,7 +38,7 @@ sudo yum install clang |true
 # ~/.vim/bundle是pathogen默认runtimepath，把所有的plugin放到该目录即可
 curl -LSso autoload/pathogen.vim https://tpo.pe/pathogen.vim | true
 mkdir bundle |true
-mv ale/ gundo.vim/ neocomplete.vim/ powerline/ vim-gocode/ vim-markdown/ vim-sensible/ nerdtree/ tagbar/ vim-go ./bundle/ |true
+cp -rf ale/ gundo.vim/ neocomplete.vim/ powerline/ vim-gocode/ vim-markdown/ vim-sensible/ nerdtree/ tagbar/ vim-go ./bundle/ |true
 
 cp -rf ./autoload  ~/.vim/ |true
 cp -rf ./bundle  ~/.vim/  |true
@@ -58,7 +58,9 @@ filetype plugin indent on
 " cscope related
 set nocscopeverbose  
 
-set mouse=ar
+if has('mouse')
+  set mouse=a
+endif
 set hlsearch
 colorscheme desert
 set smartindent
@@ -94,6 +96,35 @@ set showcmd
 set incsearch
 set splitright
 set splitbelow
+
+function! GenTags()
+  let curdir=getcwd()
+  while !filereadable("./tags")
+    cd ..
+    if getcwd() == "/"
+      break
+    endif
+  endwhile
+
+  !rm cscope.out tags.lst tags |true
+  !touch tags.lst
+  !find | grep "\.c$" >> tags.lst
+  !find | grep "\.cc$" >> tags.lst
+  !find | grep "\.cpp$" >> tags.lst
+  !find | grep "\.hpp$" >> tags.lst
+  !find | grep "\.h$" >> tags.lst
+  !find | grep "\.cu$" >> tags.lst
+  !find | grep "\.cuh$" >> tags.lst
+  !find | grep "\.py$" >> tags.lst
+  !find | grep "\.pl$" >> tags.lst
+  !find | grep "\.cl$" >> tags.lst
+  !cscope -i -b tags.lst
+
+  !ctags -R --langmap=C++:+.cl,C:.c,Python:.py:Asm:+.S.s,Sh:.sh,Perl:+.pl *
+  execute ":cd " . curdir
+endfunction
+nmap <F10> :call GenTags()<CR>    
+
 
 au FileType python set expandtab shiftwidth=4 tabstop=4
 

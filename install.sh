@@ -25,7 +25,10 @@ rm vim-master master.zip -rf
 
 sudo mv /usr/bin/vim /usr/bin/vim.bak
 sudo ln /usr/local/bin/vim /usr/bin -s
-
+sudo yum install -y ctags
+sudo yum install -y cscope
+sudo yum install -y make
+sudo yum install -y cmake
 
 # 2. clang
 sudo yum install clang |true

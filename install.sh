@@ -78,6 +78,7 @@ let Tlist_Auto_Update = 0
 
 set cscopetag
 set textwidth=80
+set colorcolumn=80
 
 
 set nocompatible
@@ -125,7 +126,7 @@ function! GenTags()
 endfunction
 nmap <F10> :call GenTags()<CR>    
 
-
+autocmd FileType c,cpp,cc,h setlocal textwidth=80 formatoptions+=t
 au FileType python set expandtab shiftwidth=4 tabstop=4
 
 " OpenCL format.

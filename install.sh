@@ -264,12 +264,11 @@ echo ":GoInstallBinaries"
 comm
 }
 
-if [ $# == 0 ]
-then
+if [ $# == 0 ];then
   echo $#
   install_basic
-elif[ $1 == 0 ]
+elif [ $1 == 0 ];then
   install_basic
-elif[ $1 == 1 ]
+elif [ $1 == 1 ];then
   install_go
 fi

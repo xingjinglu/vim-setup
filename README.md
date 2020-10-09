@@ -67,6 +67,8 @@ function gentags(){
   rm cscope.out tags.lst tags 
   touch tags.lst                                                                
   find | grep "\.c$" >> tags.lst                                                
+  find | grep "\.cu$" >> tags.lst                                                
+  find | grep "\.cuh$" >> tags.lst                                                
   find | grep "\.cpp$" >> tags.lst                                              
   find | grep "\.h$" >> tags.lst                                                
   find | grep "\.py$" >> tags.lst                                               
@@ -74,9 +76,10 @@ function gentags(){
   find | grep "\.cl$" >> tags.lst                                               
   cscope -i tags.lst                                                            
                                                                                 
-  ctags -R --langmap=C++:+.cl,C:.c,Python:.py:Asm:+.S.s,Sh:.sh,Perl:+.pl *      
+  ctags -R --langmap=C++:+.cl.cu.cuh.cc,C:.c,Python:.py:Asm:+.S.s,Sh:.sh,Perl:+.pl *      
 }                              
 ```
+
 
 
 

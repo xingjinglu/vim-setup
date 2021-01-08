@@ -45,8 +45,8 @@ cp -rf ./bundle  ~/.vim/  |true
 cp -rf ./pack ~/.vim/  |true
 cp -rf ./plugin ~/.vim/  |true
 cp -rf ./syntax ~/.vim/  |true
-cp -rf ./view ~/.vim/    |true
-cp -rf ./pyformat.py ~/.vim/  |true
+#cp -rf ./view ~/.vim/    |true
+#cp -rf ./pyformat.py ~/.vim/  |true
 cp -rf ./doc ~/.vim/   |true
 
 # 3. Setup .vimrc
@@ -264,12 +264,11 @@ echo ":GoInstallBinaries"
 comm
 }
 
-if [ $# == 0 ]
-then
+if [ $# == 0 ];then
   echo $#
   install_basic
-elif[ $1 == 0 ]
+elif [ $1 == 0 ];then
   install_basic
-elif[ $1 == 1 ]
+elif [ $1 == 1 ];then
   install_go
 fi

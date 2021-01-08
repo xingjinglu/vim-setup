@@ -45,8 +45,8 @@ cp -rf ./bundle  ~/.vim/  |true
 cp -rf ./pack ~/.vim/  |true
 cp -rf ./plugin ~/.vim/  |true
 cp -rf ./syntax ~/.vim/  |true
-cp -rf ./view ~/.vim/    |true
-cp -rf ./pyformat.py ~/.vim/  |true
+#cp -rf ./view ~/.vim/    |true
+#cp -rf ./pyformat.py ~/.vim/  |true
 cp -rf ./doc ~/.vim/   |true
 
 # 3. Setup .vimrc

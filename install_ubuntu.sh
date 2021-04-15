@@ -10,18 +10,24 @@ echo "not with sudo"
 
 function install_basic()
 {
-add-apt-repository ppa:jonathonf/vim -y
-apt update -y
+#add-apt-repository ppa:jonathonf/vim -y |true
+#apt update -y |true
 # 1. Upgrade vim to 8.1.
 # Ubuntu
 apt-get install libncurses-dev -y
-apt install -y vim
+#apt install -y vim
 
 apt install -y ctags
 apt install cscope -y
 apt install -y make
-#sudo apt install -y cmake
+apt install -y cmake
 apt install -y curl  
+
+git clone https://github.com/vim/vim.git
+cd vim 
+./configure --with-features=huge --enable-gui=gtk2 --enable-cscope
+make -j32
+make install
 
 # 2. clang
 #apt install clang -y |true

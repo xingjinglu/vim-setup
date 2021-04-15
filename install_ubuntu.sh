@@ -10,18 +10,21 @@ echo "not with sudo"
 
 function install_basic()
 {
+add-apt-repository ppa:jonathonf/vim -y
+apt update -y
 # 1. Upgrade vim to 8.1.
 # Ubuntu
-#sudo apt-get install libncurses-dev
+apt-get install libncurses-dev -y
+apt install -y vim
 
-sudo apt install -y ctags
-sudo apt install -y cscope
-sudo apt install -y make
-sudo apt install -y cmake
-sudo apt install curl -y
+apt install -y ctags
+apt install cscope -y
+apt install -y make
+#sudo apt install -y cmake
+apt install -y curl  
 
 # 2. clang
-sudo apt install clang -y |true
+#apt install clang -y |true
 
 ## 2.1 Install pathogen  
 

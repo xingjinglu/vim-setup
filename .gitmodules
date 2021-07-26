@@ -64,3 +64,6 @@
 [submodule "ale"]
 	path = ale
 	url = https://github.com/dense-analysis/ale.git
+[submodule "vim-clang-format"]
+	path = vim-clang-format
+	url = https://github.com/rhysd/vim-clang-format.git

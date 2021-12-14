@@ -7,15 +7,26 @@ echo "not with sudo"
 #export http_proxy=http://xx.xx.xx.xx:8080
 
 
+function install_vim()
+{
+  # 1. Upgrade vim to 8.1.
+  git clone https://github.com/vim/vim.git |true
+  cd vim 
+  ./configure --with-features=huge --enable-gui=gtk2 --enable-cscope
+  make -j32
+  make install
+  cd ..
+  rm -rf vim
+}
+
+
 
 function install_basic()
 {
 #add-apt-repository ppa:jonathonf/vim -y |true
 #apt update -y |true
-# 1. Upgrade vim to 8.1.
 # Ubuntu
 apt-get install libncurses-dev -y
-#apt install -y vim
 
 apt install -y ctags
 apt install cscope -y
@@ -23,16 +34,14 @@ apt install -y make
 apt install -y cmake
 apt install -y curl  
 
-git clone https://github.com/vim/vim.git
-cd vim 
-./configure --with-features=huge --enable-gui=gtk2 --enable-cscope
-make -j32
-make install
 
 # 2. clang
 #apt install clang -y |true
 
 ## 2.1 Install pathogen  
+
+# Install vim
+install_vim
 
 # ~/.vim/bundle是pathogen默认runtimepath，把所有的plugin放到该目录即可
 curl -LSso autoload/pathogen.vim https://tpo.pe/pathogen.vim | true

@@ -20,20 +20,27 @@ function install_vim()
 }
 
 
+function install_with_sudo()
+{
+  # Ubuntu
+  apt-get install libncurses-dev -y
+
+  apt install -y ctags
+  apt install cscope -y
+  apt install -y make
+  apt install -y cmake
+  apt install -y curl  
+
+}
+
 
 function install_basic()
 {
 #add-apt-repository ppa:jonathonf/vim -y |true
 #apt update -y |true
-# Ubuntu
-apt-get install libncurses-dev -y
 
-apt install -y ctags
-apt install cscope -y
-apt install -y make
-apt install -y cmake
-apt install -y curl  
-
+# 1. install tools with sudo
+#install_with_sudo
 
 # 2. clang
 #apt install clang -y |true
@@ -41,12 +48,16 @@ apt install -y curl
 ## 2.1 Install pathogen  
 
 # Install vim
-install_vim
+#install_vim
 
 # ~/.vim/bundle是pathogen默认runtimepath，把所有的plugin放到该目录即可
 curl -LSso autoload/pathogen.vim https://tpo.pe/pathogen.vim | true
 mkdir bundle |true
 cp -rf ale/ gundo.vim/ neocomplete.vim/ powerline/ vim-gocode/ vim-markdown/ vim-sensible/ nerdtree/ tagbar/ vim-go ./bundle/ |true
+
+if [ ! -d ~/.vim ];then 
+  mkdir -p ~/.vim
+fi
 
 cp -rf ./autoload  ~/.vim/ |true
 cp -rf ./bundle  ~/.vim/  |true

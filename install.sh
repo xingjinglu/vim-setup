@@ -39,7 +39,7 @@ sudo yum install clang |true
 curl -LSso autoload/pathogen.vim https://tpo.pe/pathogen.vim | true
 mkdir bundle |true
 cp -rf ale/ gundo.vim/ neocomplete.vim/ powerline/ vim-gocode/ vim-markdown/ vim-sensible/ nerdtree/ tagbar/ vim-go ./bundle/ |true
-
+mkdir -p ~/.vim
 cp -rf ./autoload  ~/.vim/ |true
 cp -rf ./bundle  ~/.vim/  |true
 cp -rf ./pack ~/.vim/  |true

@@ -6,25 +6,30 @@ echo "not with sudo"
 #export https_proxy=http://xx.xx.xx.xx:8080
 #export http_proxy=http://xx.xx.xx.xx:8080
 
+# 1. Upgrade vim to 8.1.
+# Ubuntu
+#sudo apt-get install libncurses-dev
+function install_vim()
+{
+
+  # CentOS
+ sudo yum install ncurses-devel
+  wget https://github.com/vim/vim/archive/master.zip
+  unzip master.zip
+  pushd vim-master/src/
+  ./configure && make -j64 && sudo make install
+  popd
+  rm vim-master master.zip -rf
+
+  sudo mv /usr/bin/vim /usr/bin/vim.bak
+  sudo ln /usr/local/bin/vim /usr/bin -s
+}
 
 
 function install_basic()
 {
-# 1. Upgrade vim to 8.1.
-# Ubuntu
-#sudo apt-get install libncurses-dev
 
-# CentOS
-sudo yum install ncurses-devel
-wget https://github.com/vim/vim/archive/master.zip
-unzip master.zip
-pushd vim-master/src/
-./configure && make -j64 && sudo make install
-popd
-rm vim-master master.zip -rf
-
-sudo mv /usr/bin/vim /usr/bin/vim.bak
-sudo ln /usr/local/bin/vim /usr/bin -s
+#install_vim()
 sudo yum install -y ctags
 sudo yum install -y cscope
 sudo yum install -y make

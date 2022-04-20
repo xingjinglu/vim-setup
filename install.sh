@@ -65,6 +65,7 @@ set nocscopeverbose
 
 if has('mouse')
   set mouse=a
+  set ttymouse=sgr
 endif
 set hlsearch
 colorscheme desert

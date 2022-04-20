@@ -10,6 +10,7 @@ filetype plugin indent on
 set nocscopeverbose  
 
 set mouse=ar
+set ttymouse=sgr
 set hlsearch
 colorscheme desert
 set smartindent

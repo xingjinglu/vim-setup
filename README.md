@@ -76,7 +76,7 @@ function gentags(){
   find | grep "\.cl$" >> tags.lst                                               
   cscope -i tags.lst                                                            
                                                                                 
-  ctags -R --langmap=C++:+.cl.cu.cuh.cc.cpp,C:.c,Python:.py:Asm:+.S.s,Sh:.sh,Perl:+.pl *      
+  ctags -R --langmap=C++:+.cl.cu.cuh.cc.cpp,C:.c,Python:.py,Asm:+.S.s,Sh:.sh,Perl:+.pl *      
 }                              
 ```
 

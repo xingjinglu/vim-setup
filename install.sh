@@ -39,11 +39,12 @@ sudo yum install -y cmake
 sudo yum install clang |true
 
 ## 2.1 Install pathogen  
-
+git clone https://github.com/universal-ctags/ctags.git |true
+cd ctags && ./autogen.sh && ./configure && make -j32 && make install && cd ..
 # ~/.vim/bundle是pathogen默认runtimepath，把所有的plugin放到该目录即可
 curl -LSso autoload/pathogen.vim https://tpo.pe/pathogen.vim | true
 mkdir bundle |true
-cp -rf ale/ gundo.vim/ neocomplete.vim/ powerline/ vim-gocode/ vim-markdown/ vim-sensible/ nerdtree/ tagbar/ vim-go ./bundle/ |true
+cp -rf ale gundo.vim neocomplete.vim powerline vim-gocode vim-markdown vim-sensible nerdtree tagbar vim-go ./bundle/ |true
 mkdir -p ~/.vim
 cp -rf ./autoload  ~/.vim/ |true
 cp -rf ./bundle  ~/.vim/  |true
@@ -53,6 +54,9 @@ cp -rf ./syntax ~/.vim/  |true
 #cp -rf ./view ~/.vim/    |true
 cp -rf ./pyformat.py ~/.vim/  |true
 cp -rf ./doc ~/.vim/   |true
+
+cd bundle && git clone https://github.com/Vimjas/vim-python-pep8-indent.git
+cd ..
 
 # 3. Setup .vimrc
 cat >  ~/.vimrc <<EOF

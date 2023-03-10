@@ -45,6 +45,10 @@ cd ctags && ./autogen.sh && ./configure && make -j32 && make install && cd ..
 curl -LSso autoload/pathogen.vim https://tpo.pe/pathogen.vim | true
 mkdir bundle |true
 cp -rf ale gundo.vim neocomplete.vim powerline vim-gocode vim-markdown vim-sensible nerdtree tagbar vim-go ./bundle/ |true
+
+cd bundle && git clone https://github.com/Vimjas/vim-python-pep8-indent.git
+cd ..
+
 mkdir -p ~/.vim
 cp -rf ./autoload  ~/.vim/ |true
 cp -rf ./bundle  ~/.vim/  |true
@@ -55,8 +59,6 @@ cp -rf ./syntax ~/.vim/  |true
 cp -rf ./pyformat.py ~/.vim/  |true
 cp -rf ./doc ~/.vim/   |true
 
-cd bundle && git clone https://github.com/Vimjas/vim-python-pep8-indent.git
-cd ..
 
 # 3. Setup .vimrc
 cat >  ~/.vimrc <<EOF

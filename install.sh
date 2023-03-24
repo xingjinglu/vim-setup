@@ -17,7 +17,7 @@ function install_vim()
   wget https://github.com/vim/vim/archive/master.zip
   unzip master.zip
   pushd vim-master/src/
-  ./configure && make -j64 && sudo make install
+  ./configure --enable-python3interp  --enable-pythoninterp  && make -j64 && sudo make install
   popd
   rm vim-master master.zip -rf
 

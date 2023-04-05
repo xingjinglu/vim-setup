@@ -6,66 +6,65 @@ echo "not with sudo"
 #export https_proxy=http://xx.xx.xx.xx:8080
 #export http_proxy=http://xx.xx.xx.xx:8080
 
-# 1. Upgrade vim to 8.1.
-# Ubuntu
-#sudo apt-get install libncurses-dev
+
 function install_vim()
 {
+  # 1. Upgrade vim to 8.1.
+  git clone https://github.com/vim/vim.git |true
+  cd vim 
+  ./configure --with-features=huge --enable-gui=gtk2 --enable-cscope
+  make -j32
+  make install
+  cd ..
+  rm -rf vim
+}
 
-  # CentOS
- sudo yum install ncurses-devel
-  wget https://github.com/vim/vim/archive/master.zip
-  unzip master.zip
-  pushd vim-master/src/
-  ./configure --enable-python3interp  --enable-pythoninterp  && make -j64 && sudo make install
-  popd
-  rm vim-master master.zip -rf
 
-  sudo mv /usr/bin/vim /usr/bin/vim.bak
-  sudo ln /usr/local/bin/vim /usr/bin -s
+function install_with_sudo()
+{
+  # Ubuntu
+  apt-get install libncurses-dev -y
+
+  apt install -y ctags
+  apt install cscope -y
+  apt install -y make
+  apt install -y cmake
+  apt install -y curl  
+
 }
 
 
 function install_basic()
 {
+#add-apt-repository ppa:jonathonf/vim -y |true
+#apt update -y |true
 
-#install_vim()
-sudo yum install -y ctags
-sudo yum install -y cscope
-sudo yum install -y make
-sudo yum install -y cmake
+# pre-request
+#brew install ctags
+#brew install make
+#brew install cmake
+#brew install cscope
+
+# 1. install tools with sudo
+#install_with_sudo
 
 # 2. clang
-sudo yum install clang |true
+#apt install clang -y |true
 
 ## 2.1 Install pathogen  
-git clone https://github.com/universal-ctags/ctags.git |true
-cd ctags && ./autogen.sh && ./configure && make -j32 && make install && cd ..
+
+# Install vim
+#install_vim
+
 # ~/.vim/bundle是pathogen默认runtimepath，把所有的plugin放到该目录即可
 curl -LSso autoload/pathogen.vim https://tpo.pe/pathogen.vim | true
 mkdir bundle |true
 cp -rf ale gundo.vim neocomplete.vim powerline vim-gocode vim-markdown vim-sensible nerdtree tagbar vim-go ./bundle/ |true
 
-cd bundle 
-# install pyton relate plugins.
-git clone https://github.com/Vimjas/vim-python-pep8-indent.git
-# automatic format tool accord pep8
-git clone https://github.com/tell-k/vim-autopep8.git
-pip install autopep8
-git clone https://github.com/nvie/vim-flake8.git
-pip install flake8
-# display indent.
-git clone https://github.com/Yggdroot/indentLine.git
-git clone https://github.com/jiangmiao/auto-pairs.git
+if [ ! -d ~/.vim ];then 
+  mkdir -p ~/.vim
+fi
 
-# search file
-git clone https://github.com/ctrlpvim/ctrlp.vim.git
-
-# git: ":Git" 
-git clone https://github.com/tpope/vim-fugitive.git
-cd ..
-
-mkdir -p ~/.vim
 cp -rf ./autoload  ~/.vim/ |true
 cp -rf ./bundle  ~/.vim/  |true
 cp -rf ./pack ~/.vim/  |true
@@ -74,7 +73,6 @@ cp -rf ./syntax ~/.vim/  |true
 #cp -rf ./view ~/.vim/    |true
 cp -rf ./pyformat.py ~/.vim/  |true
 cp -rf ./doc ~/.vim/   |true
-
 
 # 3. Setup .vimrc
 cat >  ~/.vimrc <<EOF
@@ -87,7 +85,6 @@ set nocscopeverbose
 
 if has('mouse')
   set mouse=a
-  set ttymouse=sgr
 endif
 set hlsearch
 colorscheme desert
@@ -100,34 +97,13 @@ set autoindent
 syntax on
 set hlsearch
 set showmatch
-colorscheme desert
-set smartindent
-set expandtab
-set shiftwidth=2
-set tabstop=2
-set autoindent
-set showmatch
 
-set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
-set termencoding=utf-8
-set encoding=utf-8
+let Tlist_Auto_Open = 0
+let Tlist_Auto_Update = 0
 
 set cscopetag
 set textwidth=80
 set colorcolumn=80
-
-set foldmethod=indent
-set foldlevel=99
-" Enable folding with the spacebar
-nnoremap <space> za
-
-
-"set cursorline
-"set cursorcolumn
-
-
-let Tlist_Auto_Open = 0
-let Tlist_Auto_Update = 0
 
 
 set nocompatible
@@ -202,19 +178,6 @@ let g:ale_linters_explicit = 0
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-
-"python
-map <F5> :call RunPython()<CR>
-func! RunPython()
-    exec "W"
-    if &filetype == 'python'
-        exec "!time python %"
-    endif
-endfunc
-
-autocmd BufWritePost *.py call flake8#Flake8()
-let g:AutoPairsFlyMode = 1
-let g:AutoPairsFlyMode = 1
 
 "gcc
 let g:ale_c_gcc_options = '-Wall -O2 -std=c99'

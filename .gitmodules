@@ -67,3 +67,6 @@
 [submodule "vim-clang-format"]
 	path = vim-clang-format
 	url = https://github.com/rhysd/vim-clang-format.git
+[submodule "ctrlp.vim"]
+	path = ctrlp.vim
+	url = https://github.com/kien/ctrlp.vim
